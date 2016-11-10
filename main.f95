@@ -52,15 +52,16 @@ contains
         out(3) = array1(1) * array2(2) - array1(3)*array2(1)
 
     end function cross_product
+
     !posunuti castice o rychlost
     subroutine particlePush(x, v, dt)
         real :: x(3)
         real :: v(3)
         real :: dt
 
-        x(1) += v(1)*dt
-        x(2) += v(2)*dt
-        x(3) += v(3)*dt
+        x(1) = x(1) + v(1)*dt
+        x(2) = x(2) + v(2)*dt
+        x(3) = x(3) + v(3)*dt
     end subroutine particlePush
     !upraveni rychlosti
  !   subroutine updateVelocity(x, v, E, B, dt)
