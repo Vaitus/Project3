@@ -13,7 +13,7 @@ program main
     B = Bindukce(x)
     E = Efield(x)
 
-    updateVelocity(x,v,E,B,-0.5*dt) !posunuti castice o 0.5 "dozadu"
+   ! updateVelocity(x,v,E,B,-0.5*dt) !posunuti castice o 0.5 "dozadu"
 
 
     write (*,*) "Input number of points to average:", q
@@ -30,7 +30,7 @@ contains
 
     end function startingPositionForX
 
-    !nastaveni startovni rychlosti
+       !nastaveni startovni rychlosti
     function startingVelocity() result(out)
         implicit none
         real :: out(3)
@@ -39,9 +39,9 @@ contains
         out(2) = 1e5
         out(3) = 0
 
-    end function startingPositionForX
+    end function startingVelocity
 
-    !vektorovej soucin
+     !vektorovej soucin
     function cross_product(array1, array2) result(out)
         implicit none
         real :: array1(3), array2(3)
@@ -54,17 +54,22 @@ contains
     end function cross_product
     !posunuti castice o rychlost
     subroutine particlePush(x, v, dt)
+        real :: x(3)
+        real :: v(3)
+        real :: dt
+
         x(1) += v(1)*dt
         x(2) += v(2)*dt
         x(3) += v(3)*dt
     end subroutine particlePush
     !upraveni rychlosti
-    subroutine updateVelocity(x, v, E, B, dt)
+ !   subroutine updateVelocity(x, v, E, B, dt)
 
-    end subroutine updateVelocity
+  !  end subroutine updateVelocity
     !nastaveni magneticke indukce
     function Bindukce(x) result(out)
           implicit none
+        real :: x(3)
         real :: out(3)
 
         out(1) = 0
@@ -74,11 +79,12 @@ contains
     !elektro. pole
     function Efield(x) result(out)
           implicit none
+          real :: x(3)
         real :: out(3)
 
         out(1) = 0
         out(2) = 0
         out(3) = 0
-    end function Eforce
+    end function Efield
 
 end program main
