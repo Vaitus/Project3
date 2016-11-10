@@ -13,8 +13,16 @@ program main
     B = Bindukce(x)
     E = Efield(x)
 
-   ! updateVelocity(x,v,E,B,-0.5*dt) !posunuti castice o 0.5 "dozadu"
+    updateVelocity(x,v,E,B,-0.5*dt) !posunuti castice o 0.5 "dozadu"
 
+    do i = 0, 1000
+        E = Efield(x)
+        B = Bindukce(x)
+
+        updateVelocity(x, v, E, B, dt)
+        particlePush(x, v, dt)
+
+    end do
 
     write (*,*) "Input number of points to average:", q
 
@@ -63,10 +71,12 @@ contains
         x(2) = x(2) + v(2)*dt
         x(3) = x(3) + v(3)*dt
     end subroutine particlePush
+
     !upraveni rychlosti
  !   subroutine updateVelocity(x, v, E, B, dt)
 
   !  end subroutine updateVelocity
+
     !nastaveni magneticke indukce
     function Bindukce(x) result(out)
           implicit none
