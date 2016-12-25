@@ -71,7 +71,7 @@ module leapfrog
         implicit none
         real :: out(3)
 
-        out = (/500000.0,0.0,0.0/)
+        out = (/10000.0,0.0,0.0/)
 
     end function startingVelocity
 
